@@ -1,6 +1,7 @@
+# dataset settings
 _base_ = 'coco_instance.py'
 dataset_type = 'LVISV1Dataset'
-data_root = '/media/amax/Passport_4T/coco2017/'
+data_root = 'data/lvis_v1/'
 data = dict(
     samples_per_gpu=2,
     workers_per_gpu=2,

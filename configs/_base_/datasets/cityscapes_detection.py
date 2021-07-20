@@ -1,9 +1,6 @@
-# dataset_type = 'CityscapesDataset'
-dataset_type = 'CocoDataset'
-data_root = '/home/amax/cityscapes/'
-CLASSES = ('person', 'rider', 'car', 'truck', 'bus', 'train', 'motorcycle',
-            'bicycle')
-
+# dataset settings
+dataset_type = 'CityscapesDataset'
+data_root = 'data/cityscapes/'
 img_norm_cfg = dict(
     mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True)
 train_pipeline = [
@@ -43,20 +40,17 @@ data = dict(
             ann_file=data_root +
             'annotations/instancesonly_filtered_gtFine_train.json',
             img_prefix=data_root + 'leftImg8bit/train/',
-            pipeline=train_pipeline,
-            classes=CLASSES)),
+            pipeline=train_pipeline)),
     val=dict(
         type=dataset_type,
         ann_file=data_root +
         'annotations/instancesonly_filtered_gtFine_val.json',
         img_prefix=data_root + 'leftImg8bit/val/',
-        pipeline=test_pipeline,
-        classes=CLASSES),
+        pipeline=test_pipeline),
     test=dict(
         type=dataset_type,
         ann_file=data_root +
-        'annotations/instancesonly_filtered_gtFine_val.json',
-        img_prefix=data_root + 'leftImg8bit/val/',
-        pipeline=test_pipeline,
-        classes=CLASSES))
+        'annotations/instancesonly_filtered_gtFine_test.json',
+        img_prefix=data_root + 'leftImg8bit/test/',
+        pipeline=test_pipeline))
 evaluation = dict(interval=1, metric='bbox')

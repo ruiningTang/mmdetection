@@ -29,7 +29,3 @@ train_pipeline = [
     dict(type='Collect', keys=['img', 'gt_bboxes', 'gt_labels', 'gt_masks']),
 ]
 data = dict(train=dict(dataset=dict(pipeline=train_pipeline)))
-
-work_dir = './work_dirs/lvis_v1/mask_rcnn/mask_rcnn_r50_fpn_1x_ms_lvis_v1'
-
-
