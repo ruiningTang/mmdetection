@@ -1,4 +1,4 @@
-_base_ = 'coco_instance.py'
+_base_ = 'coco_detection.py'
 dataset_type = 'LVISV1Dataset'
 data_root = '/media/amax/Passport_4T/coco2017/'
 data = dict(
@@ -20,4 +20,4 @@ data = dict(
         type=dataset_type,
         ann_file=data_root + 'annotations/lvis_v1_val.json',
         img_prefix=data_root))
-evaluation = dict(metric=['bbox', 'segm'])
+evaluation = dict(metric=['bbox'])
