@@ -4,6 +4,7 @@ _base_ = [
     '../_base_/schedules/schedule_1x.py', '../_base_/default_runtime.py'
 ]
 model = dict(
+    pretrained='open-mmlab://regnetx_3.2gf',
     backbone=dict(
         _delete_=True,
         type='RegNet',
@@ -12,9 +13,7 @@ model = dict(
         frozen_stages=1,
         norm_cfg=dict(type='BN', requires_grad=True),
         norm_eval=True,
-        style='pytorch',
-        init_cfg=dict(
-            type='Pretrained', checkpoint='open-mmlab://regnetx_3.2gf')),
+        style='pytorch'),
     neck=dict(
         type='FPN',
         in_channels=[96, 192, 432, 1008],

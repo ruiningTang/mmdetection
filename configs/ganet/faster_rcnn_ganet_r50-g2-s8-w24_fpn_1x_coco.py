@@ -1,0 +1,9 @@
+_base_ = '../faster_rcnn/faster_rcnn_r50_fpn_1x_coco.py'
+model = dict(
+    pretrained='/media/amax/Passport_4T/ganet50-g2-s8-w24.pth',
+    backbone=dict(
+        type='GANet',
+        depth=50,
+        branch=2,
+        scales=8,
+        base_width=24))

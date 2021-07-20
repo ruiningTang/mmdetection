@@ -2,11 +2,8 @@ _base_ = '../_base_/default_runtime.py'
 # model settings
 model = dict(
     type='YOLOV3',
-    backbone=dict(
-        type='Darknet',
-        depth=53,
-        out_indices=(3, 4, 5),
-        init_cfg=dict(type='Pretrained', checkpoint='open-mmlab://darknet53')),
+    pretrained='open-mmlab://darknet53',
+    backbone=dict(type='Darknet', depth=53, out_indices=(3, 4, 5)),
     neck=dict(
         type='YOLOV3Neck',
         num_scales=3,

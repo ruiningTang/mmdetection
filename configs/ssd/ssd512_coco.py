@@ -1,11 +1,7 @@
 _base_ = 'ssd300_coco.py'
 input_size = 512
 model = dict(
-    neck=dict(
-        out_channels=(512, 1024, 512, 256, 256, 256, 256),
-        level_strides=(2, 2, 2, 2, 1),
-        level_paddings=(1, 1, 1, 1, 1),
-        last_kernel_size=4),
+    backbone=dict(input_size=input_size),
     bbox_head=dict(
         in_channels=(512, 1024, 512, 256, 256, 256, 256),
         anchor_generator=dict(

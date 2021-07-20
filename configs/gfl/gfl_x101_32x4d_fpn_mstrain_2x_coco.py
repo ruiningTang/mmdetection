@@ -1,6 +1,7 @@
 _base_ = './gfl_r50_fpn_mstrain_2x_coco.py'
 model = dict(
     type='GFL',
+    pretrained='open-mmlab://resnext101_32x4d',
     backbone=dict(
         type='ResNeXt',
         depth=101,
@@ -11,6 +12,4 @@ model = dict(
         frozen_stages=1,
         norm_cfg=dict(type='BN', requires_grad=True),
         norm_eval=True,
-        style='pytorch',
-        init_cfg=dict(
-            type='Pretrained', checkpoint='open-mmlab://resnext101_32x4d')))
+        style='pytorch'))

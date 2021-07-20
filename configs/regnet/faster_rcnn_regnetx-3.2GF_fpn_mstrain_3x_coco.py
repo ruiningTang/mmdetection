@@ -1,7 +1,10 @@
 _base_ = [
-    '../common/mstrain_3x_coco.py', '../_base_/models/faster_rcnn_r50_fpn.py'
+    '../_base_/models/faster_rcnn_r50_fpn.py',
+    '../_base_/datasets/coco_detection.py',
+    '../_base_/schedules/schedule_1x.py', '../_base_/default_runtime.py'
 ]
 model = dict(
+    pretrained='open-mmlab://regnetx_3.2gf',
     backbone=dict(
         _delete_=True,
         type='RegNet',
@@ -10,9 +13,7 @@ model = dict(
         frozen_stages=1,
         norm_cfg=dict(type='BN', requires_grad=True),
         norm_eval=True,
-        style='pytorch',
-        init_cfg=dict(
-            type='Pretrained', checkpoint='open-mmlab://regnetx_3.2gf')),
+        style='pytorch'),
     neck=dict(
         type='FPN',
         in_channels=[96, 192, 432, 1008],
@@ -28,8 +29,9 @@ train_pipeline = [
     dict(type='LoadAnnotations', with_bbox=True),
     dict(
         type='Resize',
-        img_scale=[(1333, 640), (1333, 800)],
-        multiscale_mode='range',
+        img_scale=[(1333, 640), (1333, 672), (1333, 704), (1333, 736),
+                   (1333, 768), (1333, 800)],
+        multiscale_mode='value',
         keep_ratio=True),
     dict(type='RandomFlip', flip_ratio=0.5),
     dict(type='Normalize', **img_norm_cfg),
@@ -52,10 +54,10 @@ test_pipeline = [
             dict(type='Collect', keys=['img']),
         ])
 ]
-
 data = dict(
-    train=dict(dataset=dict(pipeline=train_pipeline)),
+    train=dict(pipeline=train_pipeline),
     val=dict(pipeline=test_pipeline),
     test=dict(pipeline=test_pipeline))
-
-optimizer = dict(weight_decay=0.00005)
+optimizer = dict(type='SGD', lr=0.02, momentum=0.9, weight_decay=0.00005)
+lr_config = dict(step=[28, 34])
+runner = dict(type='EpochBasedRunner', max_epochs=36)

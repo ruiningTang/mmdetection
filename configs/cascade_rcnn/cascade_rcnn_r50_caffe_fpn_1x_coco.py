@@ -1,12 +1,8 @@
 _base_ = './cascade_rcnn_r50_fpn_1x_coco.py'
 
 model = dict(
-    backbone=dict(
-        norm_cfg=dict(requires_grad=False),
-        style='caffe',
-        init_cfg=dict(
-            type='Pretrained',
-            checkpoint='open-mmlab://detectron2/resnet50_caffe')))
+    pretrained='open-mmlab://detectron2/resnet50_caffe',
+    backbone=dict(norm_cfg=dict(requires_grad=False), style='caffe'))
 
 # use caffe img_norm
 img_norm_cfg = dict(

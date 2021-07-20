@@ -2,6 +2,7 @@
 norm_cfg = dict(type='BN', requires_grad=False)
 model = dict(
     type='FasterRCNN',
+    pretrained='open-mmlab://detectron2/resnet50_caffe',
     backbone=dict(
         type='ResNet',
         depth=50,
@@ -12,10 +13,7 @@ model = dict(
         frozen_stages=1,
         norm_cfg=norm_cfg,
         norm_eval=True,
-        style='caffe',
-        init_cfg=dict(
-            type='Pretrained',
-            checkpoint='open-mmlab://detectron2/resnet50_caffe')),
+        style='caffe'),
     rpn_head=dict(
         type='RPNHead',
         in_channels=2048,

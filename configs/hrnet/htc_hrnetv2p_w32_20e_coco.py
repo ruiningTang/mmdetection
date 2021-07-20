@@ -1,5 +1,6 @@
 _base_ = '../htc/htc_r50_fpn_20e_coco.py'
 model = dict(
+    pretrained='open-mmlab://msra/hrnetv2_w32',
     backbone=dict(
         _delete_=True,
         type='HRNet',
@@ -27,9 +28,7 @@ model = dict(
                 num_branches=4,
                 block='BASIC',
                 num_blocks=(4, 4, 4, 4),
-                num_channels=(32, 64, 128, 256))),
-        init_cfg=dict(
-            type='Pretrained', checkpoint='open-mmlab://msra/hrnetv2_w32')),
+                num_channels=(32, 64, 128, 256)))),
     neck=dict(
         _delete_=True,
         type='HRFPN',

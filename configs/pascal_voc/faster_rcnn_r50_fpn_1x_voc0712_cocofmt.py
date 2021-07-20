@@ -10,7 +10,7 @@ CLASSES = ('aeroplane', 'bicycle', 'bird', 'boat', 'bottle', 'bus', 'car',
 
 # dataset settings
 dataset_type = 'CocoDataset'
-data_root = 'data/VOCdevkit/'
+data_root = '/home/amax/VOCdevkit/'
 img_norm_cfg = dict(
     mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True)
 train_pipeline = [
@@ -39,37 +39,38 @@ test_pipeline = [
         ])
 ]
 data = dict(
-    samples_per_gpu=2,
+    samples_per_gpu=4,
     workers_per_gpu=2,
     train=dict(
         type='RepeatDataset',
-        times=3,
+        times=1,
         dataset=dict(
             type=dataset_type,
-            ann_file='data/voc0712_trainval.json',
-            img_prefix='data/VOCdevkit',
+            ann_file=data_root+'voc0712_trainval.json',
+            img_prefix=data_root,
             pipeline=train_pipeline,
             classes=CLASSES)),
     val=dict(
         type=dataset_type,
-        ann_file='data/voc07_test.json',
-        img_prefix='data/VOCdevkit',
+        ann_file=data_root+'voc07_test.json',
+        img_prefix=data_root,
         pipeline=test_pipeline,
         classes=CLASSES),
     test=dict(
         type=dataset_type,
-        ann_file='data/voc07_test.json',
-        img_prefix='data/VOCdevkit',
+        ann_file=data_root+'voc07_test.json',
+        img_prefix=data_root,
         pipeline=test_pipeline,
         classes=CLASSES))
 evaluation = dict(interval=1, metric='bbox')
 
 # optimizer
-optimizer = dict(type='SGD', lr=0.01, momentum=0.9, weight_decay=0.0001)
+optimizer = dict(type='SGD', lr=0.02, momentum=0.9, weight_decay=0.0001)
 optimizer_config = dict(grad_clip=None)
 # learning policy
 # actual epoch = 3 * 3 = 9
-lr_config = dict(policy='step', step=[3])
+lr_config = dict(policy='step', step=[8,11])
 # runtime settings
 runner = dict(
-    type='EpochBasedRunner', max_epochs=4)  # actual epoch = 4 * 3 = 12
+    type='EpochBasedRunner', max_epochs=12)  # actual epoch = 4 * 3 = 12
+work_dir = './work_dirs/voc/reg_loss/faster_rcnn/faster_rcnn_r50_fpn_l1_1x_voc0712_cocofmt'

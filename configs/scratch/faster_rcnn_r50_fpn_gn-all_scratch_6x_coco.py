@@ -5,11 +5,9 @@ _base_ = [
 ]
 norm_cfg = dict(type='GN', num_groups=32, requires_grad=True)
 model = dict(
+    pretrained=None,
     backbone=dict(
-        frozen_stages=-1,
-        zero_init_residual=False,
-        norm_cfg=norm_cfg,
-        init_cfg=None),
+        frozen_stages=-1, zero_init_residual=False, norm_cfg=norm_cfg),
     neck=dict(norm_cfg=norm_cfg),
     roi_head=dict(
         bbox_head=dict(

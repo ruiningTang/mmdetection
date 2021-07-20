@@ -5,10 +5,8 @@ _base_ = [
 ]
 # model settings
 model = dict(
-    backbone=dict(
-        depth=101,
-        init_cfg=dict(type='Pretrained',
-                      checkpoint='torchvision://resnet101')),
+    pretrained='torchvision://resnet101',
+    backbone=dict(depth=101),
     bbox_head=dict(
         _delete_=True,
         type='SABLRetinaHead',
