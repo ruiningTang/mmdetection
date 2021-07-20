@@ -73,4 +73,3 @@ lr_config = dict(policy='step', step=[8,11])
 # runtime settings
 runner = dict(
     type='EpochBasedRunner', max_epochs=12)  # actual epoch = 4 * 3 = 12
-work_dir = './work_dirs/voc/reg_loss/faster_rcnn/faster_rcnn_r50_fpn_l1_1x_voc0712_cocofmt'

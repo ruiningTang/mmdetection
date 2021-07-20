@@ -2,7 +2,36 @@ _base_ = [
     '../_base_/models/faster_rcnn_r50_fpn.py', '../_base_/datasets/voc0712.py',
     '../_base_/default_runtime.py'
 ]
-model = dict(roi_head=dict(bbox_head=dict(num_classes=20)))
+
+model = dict(
+    roi_head=dict(
+        bbox_head=dict(
+            _delete_=True,
+            type='SABLHead',
+            num_classes=20,
+            cls_in_channels=256,
+            reg_in_channels=256,
+            roi_feat_size=7,
+            reg_feat_up_ratio=2,
+            reg_pre_kernel=3,
+            reg_post_kernel=3,
+            reg_pre_num=2,
+            reg_post_num=1,
+            cls_out_channels=1024,
+            reg_offset_out_channels=256,
+            reg_cls_out_channels=256,
+            num_cls_fcs=1,
+            num_reg_fcs=0,
+            reg_class_agnostic=True,
+            norm_cfg=None,
+            bbox_coder=dict(
+                type='BucketingBBoxCoder', num_buckets=14, scale_factor=1.7),
+            loss_cls=dict(
+                type='CrossEntropyLoss', use_sigmoid=False, loss_weight=1.0),
+            loss_bbox_cls=dict(
+                type='CrossEntropyLoss', use_sigmoid=True, loss_weight=1.0),
+            loss_bbox_reg=dict(type='SmoothL1Loss', beta=0.1,
+                               loss_weight=1.0))))
 
 CLASSES = ('aeroplane', 'bicycle', 'bird', 'boat', 'bottle', 'bus', 'car',
            'cat', 'chair', 'cow', 'diningtable', 'dog', 'horse', 'motorbike',
@@ -66,11 +95,15 @@ evaluation = dict(interval=1, metric='bbox')
 
 # optimizer
 optimizer = dict(type='SGD', lr=0.02, momentum=0.9, weight_decay=0.0001)
-optimizer_config = dict(grad_clip=None)
+optimizer_config = dict(grad_clip=dict(max_norm=35, norm_type=2))
 # learning policy
-# actual epoch = 3 * 3 = 9
-lr_config = dict(policy='step', step=[8,11])
+lr_config = dict(
+    policy='step',
+    warmup='linear',
+    warmup_iters=500,
+    warmup_ratio=0.001,
+    step=[8, 11])
 # runtime settings
 runner = dict(
     type='EpochBasedRunner', max_epochs=12)  # actual epoch = 4 * 3 = 12
-work_dir = './work_dirs/voc/reg_loss/faster_rcnn/faster_rcnn_r50_fpn_l1_1x_voc0712_cocofmt'
+work_dir = './work_dirs/voc/bbox_reg/sabl/sabl_faster_rcnn_r50_fpn_1x_voc0712_cocofmt'

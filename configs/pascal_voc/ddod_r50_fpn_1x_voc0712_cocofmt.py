@@ -1,8 +1,6 @@
-_base_ = [
-    '../_base_/models/faster_rcnn_r50_fpn.py', '../_base_/datasets/voc0712.py',
-    '../_base_/default_runtime.py'
-]
-model = dict(roi_head=dict(bbox_head=dict(num_classes=20)))
+_base_ = '../ddod/ddod_r50_fpn_1x_coco.py'
+
+model = dict(bbox_head = dict(num_classes=20))
 
 CLASSES = ('aeroplane', 'bicycle', 'bird', 'boat', 'bottle', 'bus', 'car',
            'cat', 'chair', 'cow', 'diningtable', 'dog', 'horse', 'motorbike',
@@ -11,8 +9,10 @@ CLASSES = ('aeroplane', 'bicycle', 'bird', 'boat', 'bottle', 'bus', 'car',
 # dataset settings
 dataset_type = 'CocoDataset'
 data_root = '/home/amax/VOCdevkit/'
+
 img_norm_cfg = dict(
     mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True)
+
 train_pipeline = [
     dict(type='LoadImageFromFile'),
     dict(type='LoadAnnotations', with_bbox=True),
@@ -62,15 +62,14 @@ data = dict(
         img_prefix=data_root,
         pipeline=test_pipeline,
         classes=CLASSES))
+
 evaluation = dict(interval=1, metric='bbox')
+# lr_config = dict(_delete_=True, policy='step', step=[8, 11])
 
 # optimizer
-optimizer = dict(type='SGD', lr=0.02, momentum=0.9, weight_decay=0.0001)
-optimizer_config = dict(grad_clip=None)
-# learning policy
-# actual epoch = 3 * 3 = 9
-lr_config = dict(policy='step', step=[8,11])
-# runtime settings
-runner = dict(
-    type='EpochBasedRunner', max_epochs=12)  # actual epoch = 4 * 3 = 12
-work_dir = './work_dirs/voc/reg_loss/faster_rcnn/faster_rcnn_r50_fpn_l1_1x_voc0712_cocofmt'
+# optimizer = dict(
+#     lr=0.01, paramwise_cfg=dict(bias_lr_mult=2., bias_decay_mult=0.))
+optimizer_config = dict(
+    _delete_=True, grad_clip=dict(max_norm=35, norm_type=2))
+
+work_dir = './work_dirs/voc/ddod/ddod_r50_fpn_1x_voc0712_cocofmt'
