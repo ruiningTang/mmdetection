@@ -35,6 +35,7 @@ from .yolof_head import YOLOFHead
 from .ddod_head import DDODHead
 from .ddod_fcos_head import DDODFCOSHead
 from .sepc_retina_head import SepcRetinaHead
+from .atss_iou_head import ATSSIoUHead
 
 __all__ = [
     'AnchorFreeHead', 'AnchorHead', 'GuidedAnchorHead', 'FeatureAdaption',
@@ -46,5 +47,5 @@ __all__ = [
     'SABLRetinaHead', 'CentripetalHead', 'VFNetHead', 'StageCascadeRPNHead',
     'CascadeRPNHead', 'EmbeddingRPNHead', 'LDHead', 'CascadeRPNHead',
     'AutoAssignHead', 'DETRHead', 'YOLOFHead', 'DeformableDETRHead',
-    'CenterNetHead', 'DDODHead', 'DDODFCOSHead','SepcRetinaHead'
+    'CenterNetHead', 'DDODHead', 'DDODFCOSHead','SepcRetinaHead', 'ATSSIoUHead'
 ]
