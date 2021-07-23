@@ -8,7 +8,7 @@ from .positional_encoding import (LearnedPositionalEncoding,
 from .res_layer import ResLayer, SimplifiedBasicBlock
 from .se_layer import SELayer
 from .transformer import (DetrTransformerDecoder, DetrTransformerDecoderLayer,
-                          DynamicConv, Transformer)
+                          DynamicConv, QDynamicConv, Transformer)
 from .sepc_dconv import sepc_conv
 from .simam_module import simam_module
 
@@ -18,5 +18,5 @@ __all__ = [
     'build_transformer', 'build_linear_layer', 'SinePositionalEncoding',
     'LearnedPositionalEncoding', 'DynamicConv', 'SimplifiedBasicBlock',
     'NormedLinear', 'NormedConv2d', 'make_divisible', 'InvertedResidual',
-    'SELayer','sepc_conv','simam_module'
+    'SELayer','sepc_conv','simam_module', 'QDynamicConv'
 ]
