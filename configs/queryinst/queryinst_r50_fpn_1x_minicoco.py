@@ -123,4 +123,4 @@ optimizer_config = dict(_delete_=True, grad_clip=dict(max_norm=1, norm_type=2))
 # learning policy
 lr_config = dict(policy='step', step=[8, 11], warmup_iters=1000)
 total_epochs = 12
-work_dir = 'work_dirs/coco_instance/queryinst/queryinst_r50_fpn_1x_minicoco'
+work_dir = 'work_dirs/minicoco_instance/queryinst/queryinst_r50_fpn_1x_minicoco'
