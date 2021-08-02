@@ -4,12 +4,11 @@ _base_ = [
     '../_base_/schedules/schedule_1x.py',
     '../_base_/default_runtime.py'
 ]
-# optimizer
 model = dict(
-    # pretrained='pretrained/pvt_v2_b1.pth',
-    pretrained='https://github.com/whai362/PVT/releases/download/v2/pvt_v2_b1.pth',
+    # pretrained='pretrained/pvt_tiny.pth',
+    pretrained='https://github.com/whai362/PVT/releases/download/v2/pvt_tiny.pth',
     backbone=dict(
-        type='pvt_v2_b1',
+        type='pvt_tiny',
         style='pytorch'),
     neck=dict(
         type='FPN',
@@ -19,7 +18,6 @@ model = dict(
         add_extra_convs='on_input',
         num_outs=5))
 # optimizer
-optimizer = dict(_delete_=True, type='AdamW', lr=0.0001, weight_decay=0.0001)
+optimizer = dict(_delete_=True, type='AdamW', lr=0.00005, weight_decay=0.0001)
 optimizer_config = dict(grad_clip=None)
-
-work_dir = 'work_dirs/coco/pvt_v2/retinanet_pvt_v2_b1_fpn_1x_coco'
+work_dir = 'work_dirs/coco/pvt_v1/retinanet_pvt_v1_tiny_fpn_1x_coco'
