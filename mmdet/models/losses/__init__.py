@@ -8,7 +8,7 @@ from .gaussian_focal_loss import GaussianFocalLoss
 from .gfocal_loss import DistributionFocalLoss, QualityFocalLoss
 from .ghm_loss import GHMC, GHMR
 from .iou_loss import (BoundedIoULoss, CIoULoss, DIoULoss, GIoULoss, IoULoss,
-                       bounded_iou_loss, iou_loss)
+                       bounded_iou_loss, iou_loss, eiou_loss, EIoULoss)
 from .kd_loss import KnowledgeDistillationKLDivLoss
 from .mse_loss import MSELoss, mse_loss
 from .pisa_loss import carl_loss, isr_p
@@ -29,5 +29,5 @@ __all__ = [
     'l1_loss', 'isr_p', 'carl_loss', 'AssociativeEmbeddingLoss',
     'GaussianFocalLoss', 'QualityFocalLoss', 'DistributionFocalLoss',
     'VarifocalLoss', 'KnowledgeDistillationKLDivLoss', 'SeesawLoss', 'DiceLoss',
-    'aLRPLoss', 'APLoss', 'RankSort'
+    'aLRPLoss', 'APLoss', 'RankSort', 'eiou_loss', 'EIoULoss'
 ]

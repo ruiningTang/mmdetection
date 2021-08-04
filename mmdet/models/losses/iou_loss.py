@@ -35,6 +35,64 @@ def iou_loss(pred, target, linear=False, eps=1e-6):
         loss = -ious.log()
     return loss
 
+@mmcv.jit(derivate=True, coderize=True)
+@weighted_loss
+def eiou_loss(pred, target, linear=True, using_grad_factor=True, smooth_point=0.1, eps=1e-6):
+    """IoU loss.
+
+    Computing the IoU loss between a set of predicted bboxes and target bboxes.
+    The loss is calculated as negative log of IoU.
+
+    Args:
+        pred (torch.Tensor): Predicted bboxes of format (x1, y1, x2, y2),
+            shape (n, 4).
+        target (torch.Tensor): Corresponding gt bboxes, shape (n, 4).
+        linear (bool, optional): If True, use linear scale of loss instead of
+            log scale. Default: False.
+        eps (float): Eps to avoid log(0).
+
+    Return:
+        torch.Tensor: Loss tensor.
+    """
+    
+    # ious = bbox_overlaps(pred, target, is_aligned=True).clamp(min=eps)
+    # EIOU calculate
+    # (x0,y0)
+    point_small = torch.min(pred[:, :2], target[:, :2])
+
+    # (x1,y1) and (x2,y2)
+    tl = torch.max(pred[:, :2], target[:, :2])
+    br = torch.min(pred[:, 2:], target[:, 2:])
+
+    # x_min,y_min and x_max,y_max
+    overlap_points_min = torch.min(tl, br)
+    overlap_points_max = torch.max(tl, br)
+
+    # overlap
+    s1 = (br - point_small)[:, 0] * (br - point_small)[:, 1]
+    s2 = (overlap_points_min - point_small)[:, 0] * (overlap_points_min - point_small)[:, 1]
+    s3 = (tl[:, 0] - point_small[:, 0]) * (overlap_points_max[:, 1] - point_small[:, 1])
+    s4 = (overlap_points_max[:, 0] - point_small[:, 0]) * (tl[:, 1] - point_small[:, 1])
+    eiou_overlap = s1 + s2 - s3 - s4
+
+    # union
+    ap = (pred[:, 2] - pred[:, 0]) * (pred[:, 3] - pred[:, 1])
+    ag = (target[:, 2] - target[:, 0]) * (target[:, 3] - target[:, 1])
+
+    eiou_union = ap + ag - eiou_overlap + eps
+
+    # eiou
+    eious = eiou_overlap / eiou_union
+
+    if linear:
+        loss = 1 - eious
+    else:
+        # assign different weights to positive samples, here the eiou loss only focuses on iou > smooth_point samples. 
+        smooth_sign = ((1 - eious) < smooth_point).detach().float()
+        loss = 0.5 * smooth_sign * ((1 - eious) ** 2) / smooth_point + (1 - smooth_sign) * ((1 - eious) - 0.5 * smooth_point)
+        if using_grad_factor:
+            loss = loss * eiou_union.detach().float()
+    return loss
 
 @mmcv.jit(derivate=True, coderize=True)
 @weighted_loss
@@ -439,6 +497,77 @@ class CIoULoss(nn.Module):
             pred,
             target,
             weight,
+            eps=self.eps,
+            reduction=reduction,
+            avg_factor=avg_factor,
+            **kwargs)
+        return loss
+
+@LOSSES.register_module()
+class EIoULoss(nn.Module):
+    """IoULoss.
+
+    Computing the IoU loss between a set of predicted bboxes and target bboxes.
+
+    Args:
+        linear (bool): If True, use linear scale of loss instead of log scale.
+            Default: False.
+        eps (float): Eps to avoid log(0).
+        reduction (str): Options are "none", "mean" and "sum".
+        loss_weight (float): Weight of loss.
+    """
+
+    def __init__(self,
+                 eps=1e-6,
+                 reduction='mean',
+                 loss_weight=1.0,
+                 using_grad_factor=True, 
+                 smooth_point=0.1,):
+        super(EIoULoss, self).__init__()
+        self.eps = eps
+        self.reduction = reduction
+        self.loss_weight = loss_weight
+        self.using_grad_factor = using_grad_factor
+        self.smooth_point = smooth_point
+
+    def forward(self,
+                pred,
+                target,
+                weight=None,
+                avg_factor=None,
+                reduction_override=None,
+                **kwargs):
+        """Forward function.
+
+        Args:
+            pred (torch.Tensor): The prediction.
+            target (torch.Tensor): The learning target of the prediction.
+            weight (torch.Tensor, optional): The weight of loss for each
+                prediction. Defaults to None.
+            avg_factor (int, optional): Average factor that is used to average
+                the loss. Defaults to None.
+            reduction_override (str, optional): The reduction method used to
+                override the original reduction method of the loss.
+                Defaults to None. Options are "none", "mean" and "sum".
+        """
+        assert reduction_override in (None, 'none', 'mean', 'sum')
+        reduction = (
+            reduction_override if reduction_override else self.reduction)
+        if (weight is not None) and (not torch.any(weight > 0)) and (
+                reduction != 'none'):
+            return (pred * weight).sum()  # 0
+        if weight is not None and weight.dim() > 1:
+            # TODO: remove this in the future
+            # reduce the weight of shape (n, 4) to (n,) to match the
+            # iou_loss of shape (n,)
+            assert weight.shape == pred.shape
+            weight = weight.mean(-1)
+        loss = self.loss_weight * eiou_loss(
+            pred,
+            target,
+            weight,
+            using_grad_factor=self.using_grad_factor,
+            smooth_point=self.smooth_point,
             eps=self.eps,
             reduction=reduction,
             avg_factor=avg_factor,
