@@ -547,7 +547,7 @@ class CrossFormer(nn.Module):
                  group_size=7, crs_interval=[8, 4, 2, 1], mlp_ratio=4., qkv_bias=True, qk_scale=None,
                  drop_rate=0., attn_drop_rate=0., drop_path_rate=0.1,
                  norm_layer=nn.LayerNorm, patch_norm=True,
-                 use_checkpoint=False, merge_size=[[2], [2], [2]], **kwargs):
+                 use_checkpoint=False, merge_size=[[2], [2], [2]], pretrained=None, **kwargs):
         super().__init__()
 
         self.num_classes = num_classes
@@ -600,6 +600,7 @@ class CrossFormer(nn.Module):
         # self.head = nn.Linear(self.num_features, num_classes) if num_classes > 0 else nn.Identity()
 
         self.apply(self._init_weights)
+        self.init_weights(pretrained)
 
     def init_weights(self, pretrained=None):
         if isinstance(pretrained, str):
@@ -672,7 +673,8 @@ class CrossFormer_T(CrossFormer):
             drop_path_rate=0.1,
             patch_norm=True,
             use_checkpoint=False,
-            merge_size=[[2,4], [2,4], [2,4]]
+            merge_size=[[2,4], [2,4], [2,4]],
+            pretrained=kwargs['pretrained']
         )
 
 @BACKBONES.register_module()
@@ -695,7 +697,8 @@ class CrossFormer_S(CrossFormer):
             drop_path_rate=0.2,
             patch_norm=True,
             use_checkpoint=False,
-            merge_size=[[2,4], [2,4], [2,4]]
+            merge_size=[[2,4], [2,4], [2,4]],
+            pretrained=kwargs['pretrained']
         )
 
 @BACKBONES.register_module()
@@ -718,5 +721,6 @@ class CrossFormer_B(CrossFormer):
             drop_path_rate=0.3,
             patch_norm=True,
             use_checkpoint=False,
-            merge_size=[[2,4], [2,4], [2,4]]
+            merge_size=[[2,4], [2,4], [2,4]],
+            pretrained=kwargs['pretrained']
         )
