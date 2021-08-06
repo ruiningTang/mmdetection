@@ -17,6 +17,7 @@ from .pvt import pvt_tiny, pvt_small, pvt_small_f4, pvt_medium, pvt_large
 from .crossformer import CrossFormer_S, CrossFormer_B, CrossFormer_T
 from .ganet import GANet
 from .ganet_b3 import GANet_b3
+from .swin_transformer import SwinTransformer
 
 
 __all__ = [
@@ -25,5 +26,5 @@ __all__ = [
     'DetectoRS_ResNeXt', 'Darknet', 'ResNeSt', 'TridentResNet', 'ResNetAM',
     'pvt_v2_b0', 'pvt_v2_b1', 'pvt_v2_b2', 'pvt_v2_b2_li', 'pvt_v2_b3', 'pvt_v2_b4', 'pvt_v2_b5',
     'pvt_tiny', 'pvt_small', 'pvt_small_f4', 'pvt_medium',  'pvt_large',
-    'CrossFormer_S', 'CrossFormer_B', 'CrossFormer_T', 'GANet', 'GANet_b3'
+    'CrossFormer_S', 'CrossFormer_B', 'CrossFormer_T', 'GANet', 'GANet_b3', 'SwinTransformer'
 ]
