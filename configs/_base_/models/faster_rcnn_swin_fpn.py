@@ -1,7 +1,8 @@
 # model settings
+# imagenet_pretrained_model = 'https://github.com/SwinTransformer/storage/releases/download/v1.0.0/swin_tiny_patch4_window7_224.pth'  # noqa
 model = dict(
     type='FasterRCNN',
-    pretrained='/media/amax/Passport_4T/swin_tiny_patch4_window7_224.pth',
+    pretrained='/home/amax/.cache/torch/hub/checkpoints/swin_tiny_patch4_window7_224.pth',
     backbone=dict(
         type='SwinTransformer',
         embed_dim=96,
@@ -16,8 +17,8 @@ model = dict(
         drop_path_rate=0.2,
         ape=False,
         patch_norm=True,
-        out_indices=(0, 1, 2, 3),
-        use_checkpoint=True),
+        out_indices=(1, 2, 3),
+        use_checkpoint=False),
     neck=dict(
         type='FPN',
         in_channels=[96, 192, 384, 768],
