@@ -11,6 +11,8 @@ from .transformer import (DetrTransformerDecoder, DetrTransformerDecoderLayer,
                           DynamicConv, QDynamicConv, Transformer)
 from .sepc_dconv import sepc_conv
 from .simam_module import simam_module
+from .bvr_transformer import SimpleBVR_Transformer
+from .corner_pool import BRPool, TLPool
 
 __all__ = [
     'ResLayer', 'gaussian_radius', 'gen_gaussian_target',
@@ -18,5 +20,6 @@ __all__ = [
     'build_transformer', 'build_linear_layer', 'SinePositionalEncoding',
     'LearnedPositionalEncoding', 'DynamicConv', 'SimplifiedBasicBlock',
     'NormedLinear', 'NormedConv2d', 'make_divisible', 'InvertedResidual',
-    'SELayer','sepc_conv','simam_module', 'QDynamicConv'
+    'SELayer','sepc_conv','simam_module', 'QDynamicConv', 'SimpleBVR_Transformer',
+    'BRPool', 'TLPool'
 ]

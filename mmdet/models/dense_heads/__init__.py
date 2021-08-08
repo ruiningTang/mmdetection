@@ -38,6 +38,8 @@ from .sepc_retina_head import SepcRetinaHead
 from .atss_iou_head import ATSSIoUHead
 from .rank_based_rpn_head import RankBasedRPNHead
 from .gfocal_head import GFocalHead
+from .bvr_head import BVRHead
+from .keypoint_head import KeypointHead
 
 __all__ = [
     'AnchorFreeHead', 'AnchorHead', 'GuidedAnchorHead', 'FeatureAdaption',
@@ -50,5 +52,5 @@ __all__ = [
     'CascadeRPNHead', 'EmbeddingRPNHead', 'LDHead', 'CascadeRPNHead',
     'AutoAssignHead', 'DETRHead', 'YOLOFHead', 'DeformableDETRHead',
     'CenterNetHead', 'DDODHead', 'DDODFCOSHead','SepcRetinaHead', 'ATSSIoUHead',
-    'RankBasedRPNHead', 'GFocalHead'
+    'RankBasedRPNHead', 'GFocalHead', 'BVRHead', 'KeypointHead'
 ]

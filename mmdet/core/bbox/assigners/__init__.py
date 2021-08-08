@@ -10,9 +10,11 @@ from .point_assigner import PointAssigner
 from .region_assigner import RegionAssigner
 from .uniform_assigner import UniformAssigner
 from .atss_cost_assigner import ATSSCostAssigner
+from .point_kpt_assigner import PointKptAssigner
 
 __all__ = [
     'BaseAssigner', 'MaxIoUAssigner', 'ApproxMaxIoUAssigner', 'AssignResult',
     'PointAssigner', 'ATSSAssigner', 'CenterRegionAssigner', 'GridAssigner',
-    'HungarianAssigner', 'RegionAssigner', 'UniformAssigner', 'ATSSCostAssigner'
+    'HungarianAssigner', 'RegionAssigner', 'UniformAssigner', 'ATSSCostAssigner',
+    'PointKptAssigner'
 ]
