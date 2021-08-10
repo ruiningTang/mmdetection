@@ -1,6 +1,6 @@
 import torch
 import torch.nn as nn
-from mmcv.cnn import ConvModule, Scale, bias_init_with_prob, normal_init
+from mmcv.cnn import ConvModule, Scale
 from mmcv.runner import force_fp32
 
 from mmdet.core import (anchor_inside_flags, build_assigner, build_sampler,
@@ -9,8 +9,6 @@ from mmdet.core import (anchor_inside_flags, build_assigner, build_sampler,
 from ..builder import HEADS, build_loss
 from .anchor_head import AnchorHead
 from mmdet.core.bbox import bbox_overlaps
-
-EPS = 1e-12
 
 
 @HEADS.register_module()
@@ -36,11 +34,21 @@ class ATSSIoUHead(AnchorHead):
                      type='CrossEntropyLoss',
                      use_sigmoid=True,
                      loss_weight=1.0),
+                 init_cfg=dict(
+                     type='Normal',
+                     layer='Conv2d',
+                     std=0.01,
+                     override=dict(
+                         type='Normal',
+                         name='atss_cls',
+                         std=0.01,
+                         bias_prob=0.01)),
                  **kwargs):
         self.stacked_convs = stacked_convs
         self.conv_cfg = conv_cfg
         self.norm_cfg = norm_cfg
-        super(ATSSIoUHead, self).__init__(num_classes, in_channels, **kwargs)
+        super(ATSSIoUHead, self).__init__(
+            num_classes, in_channels, init_cfg=init_cfg, **kwargs)
 
         self.sampling = False
         if self.train_cfg:
@@ -88,18 +96,6 @@ class ATSSIoUHead(AnchorHead):
             self.feat_channels, self.num_anchors * 1, 3, padding=1)
         self.scales = nn.ModuleList(
             [Scale(1.0) for _ in self.anchor_generator.strides])
-
-    def init_weights(self):
-        """Initialize weights of the head."""
-        for m in self.cls_convs:
-            normal_init(m.conv, std=0.01)
-        for m in self.reg_convs:
-            normal_init(m.conv, std=0.01)
-        bias_cls = bias_init_with_prob(0.01)
-        normal_init(self.atss_cls, std=0.01, bias=bias_cls)
-        normal_init(self.atss_reg, std=0.01)
-        normal_init(self.atss_iou, std=0.01)
-        # normal_init(self.atss_centerness, std=0.01)
 
     def forward(self, feats):
         """Forward features from the upstream network.
