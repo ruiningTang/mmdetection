@@ -17,7 +17,7 @@ model = dict(
     test_cfg=dict(score_thr=0.01, nms=dict(type='nms', iou_threshold=0.65)))
 
 # dataset settings
-data_root = 'data/coco/'
+data_root = '/media/amax/Passport_4T/coco2017/'
 dataset_type = 'CocoDataset'
 
 img_norm_cfg = dict(
@@ -97,10 +97,10 @@ data = dict(
         pipeline=test_pipeline))
 
 # optimizer
-# default 8 gpu
+# default 4 gpu
 optimizer = dict(
     type='SGD',
-    lr=0.01,
+    lr=0.005,
     momentum=0.9,
     weight_decay=5e-4,
     nesterov=True,
