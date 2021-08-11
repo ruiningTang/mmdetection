@@ -33,12 +33,21 @@ MMDetection 一共支持三种形式应用新数据集：
     "annotations": [annotation],
     "categories": [category]
 }
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> b4a84cc9cf38ee4c0fa6f6264e9916c8ba7cd3b3
 image = {
     "id": int,
     "width": int,
     "height": int,
     "file_name": str,
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> b4a84cc9cf38ee4c0fa6f6264e9916c8ba7cd3b3
 annotation = {
     "id": int,
     "image_id": int,
@@ -48,6 +57,10 @@ annotation = {
     "bbox": [x,y,width,height],
     "iscrowd": 0 or 1,
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> b4a84cc9cf38ee4c0fa6f6264e9916c8ba7cd3b3
 categories = [{
     "id": int,
     "name": str,
@@ -148,9 +161,18 @@ categories = [{
 其中将 balloon dataset 转化为 COCO 格式的代码如下所示。
 
 ```python
+<<<<<<< HEAD
 import os.path as osp
 def convert_balloon_to_coco(ann_file, out_file, image_prefix):
     data_infos = mmcv.load(ann_file)
+=======
+
+import os.path as osp
+
+def convert_balloon_to_coco(ann_file, out_file, image_prefix):
+    data_infos = mmcv.load(ann_file)
+
+>>>>>>> b4a84cc9cf38ee4c0fa6f6264e9916c8ba7cd3b3
     annotations = []
     images = []
     obj_count = 0
@@ -158,11 +180,19 @@ def convert_balloon_to_coco(ann_file, out_file, image_prefix):
         filename = v['filename']
         img_path = osp.join(image_prefix, filename)
         height, width = mmcv.imread(img_path).shape[:2]
+<<<<<<< HEAD
+=======
+
+>>>>>>> b4a84cc9cf38ee4c0fa6f6264e9916c8ba7cd3b3
         images.append(dict(
             id=idx,
             file_name=filename,
             height=height,
             width=width))
+<<<<<<< HEAD
+=======
+
+>>>>>>> b4a84cc9cf38ee4c0fa6f6264e9916c8ba7cd3b3
         bboxes = []
         labels = []
         masks = []
@@ -173,8 +203,16 @@ def convert_balloon_to_coco(ann_file, out_file, image_prefix):
             py = obj['all_points_y']
             poly = [(x + 0.5, y + 0.5) for x, y in zip(px, py)]
             poly = [p for x in poly for p in x]
+<<<<<<< HEAD
             x_min, y_min, x_max, y_max = (
                 min(px), min(py), max(px), max(py))
+=======
+
+            x_min, y_min, x_max, y_max = (
+                min(px), min(py), max(px), max(py))
+
+
+>>>>>>> b4a84cc9cf38ee4c0fa6f6264e9916c8ba7cd3b3
             data_anno = dict(
                 image_id=idx,
                 id=obj_count,
@@ -185,11 +223,19 @@ def convert_balloon_to_coco(ann_file, out_file, image_prefix):
                 iscrowd=0)
             annotations.append(data_anno)
             obj_count += 1
+<<<<<<< HEAD
+=======
+
+>>>>>>> b4a84cc9cf38ee4c0fa6f6264e9916c8ba7cd3b3
     coco_format_json = dict(
         images=images,
         annotations=annotations,
         categories=[{'id':0, 'name': 'balloon'}])
     mmcv.dump(coco_format_json, out_file)
+<<<<<<< HEAD
+=======
+
+>>>>>>> b4a84cc9cf38ee4c0fa6f6264e9916c8ba7cd3b3
 ```
 
 使用如上的函数，用户可以成功将标注文件转化为 JSON 格式，之后可以使用 `CocoDataset` 对模型进行训练和评测。
@@ -201,11 +247,19 @@ def convert_balloon_to_coco(ann_file, out_file, image_prefix):
 ```python
 # 这个新的配置文件继承自一个原始配置文件，只需要突出必要的修改部分即可
 _base_ = 'mask_rcnn/mask_rcnn_r50_caffe_fpn_mstrain-poly_1x_coco.py'
+<<<<<<< HEAD
+=======
+
+>>>>>>> b4a84cc9cf38ee4c0fa6f6264e9916c8ba7cd3b3
 # 我们需要对头中的类别数量进行修改来匹配数据集的标注
 model = dict(
     roi_head=dict(
         bbox_head=dict(num_classes=1),
         mask_head=dict(num_classes=1)))
+<<<<<<< HEAD
+=======
+
+>>>>>>> b4a84cc9cf38ee4c0fa6f6264e9916c8ba7cd3b3
 # 修改数据集相关设置
 dataset_type = 'COCODataset'
 classes = ('balloon',)
@@ -222,6 +276,10 @@ data = dict(
         img_prefix='balloon/val/',
         classes=classes,
         ann_file='balloon/val/annotation_coco.json'))
+<<<<<<< HEAD
+=======
+
+>>>>>>> b4a84cc9cf38ee4c0fa6f6264e9916c8ba7cd3b3
 # 我们可以使用预训练的 Mask R-CNN 来获取更好的性能
 load_from = 'checkpoints/mask_rcnn_r50_caffe_fpn_mstrain-poly_3x_coco_bbox_mAP-0.408__segm_mAP-0.37_20200504_163245-42aa3d00.pth'
 ```

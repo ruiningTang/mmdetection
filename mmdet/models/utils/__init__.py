@@ -1,7 +1,10 @@
 from .builder import build_linear_layer, build_transformer
+from .conv_upsample import ConvUpsample
+from .csp_layer import CSPLayer
 from .gaussian_target import gaussian_radius, gen_gaussian_target
 from .inverted_residual import InvertedResidual
 from .make_divisible import make_divisible
+from .misc import interpolate_as
 from .normed_predictor import NormedConv2d, NormedLinear
 from .positional_encoding import (LearnedPositionalEncoding,
                                   SinePositionalEncoding)
@@ -20,6 +23,10 @@ __all__ = [
     'build_transformer', 'build_linear_layer', 'SinePositionalEncoding',
     'LearnedPositionalEncoding', 'DynamicConv', 'SimplifiedBasicBlock',
     'NormedLinear', 'NormedConv2d', 'make_divisible', 'InvertedResidual',
+<<<<<<< HEAD
     'SELayer','sepc_conv','simam_module', 'QDynamicConv', 'SimpleBVR_Transformer',
     'BRPool', 'TLPool'
+=======
+    'SELayer', 'interpolate_as', 'ConvUpsample', 'CSPLayer'
+>>>>>>> b4a84cc9cf38ee4c0fa6f6264e9916c8ba7cd3b3
 ]

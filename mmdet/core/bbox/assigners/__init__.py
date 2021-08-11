@@ -8,6 +8,7 @@ from .hungarian_assigner import HungarianAssigner
 from .max_iou_assigner import MaxIoUAssigner
 from .point_assigner import PointAssigner
 from .region_assigner import RegionAssigner
+from .sim_ota_assigner import SimOTAAssigner
 from .uniform_assigner import UniformAssigner
 from .atss_cost_assigner import ATSSCostAssigner
 from .point_kpt_assigner import PointKptAssigner
@@ -15,6 +16,10 @@ from .point_kpt_assigner import PointKptAssigner
 __all__ = [
     'BaseAssigner', 'MaxIoUAssigner', 'ApproxMaxIoUAssigner', 'AssignResult',
     'PointAssigner', 'ATSSAssigner', 'CenterRegionAssigner', 'GridAssigner',
+<<<<<<< HEAD
     'HungarianAssigner', 'RegionAssigner', 'UniformAssigner', 'ATSSCostAssigner',
     'PointKptAssigner'
+=======
+    'HungarianAssigner', 'RegionAssigner', 'UniformAssigner', 'SimOTAAssigner'
+>>>>>>> b4a84cc9cf38ee4c0fa6f6264e9916c8ba7cd3b3
 ]
