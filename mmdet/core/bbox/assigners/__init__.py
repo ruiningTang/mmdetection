@@ -16,7 +16,6 @@ from .point_kpt_assigner import PointKptAssigner
 __all__ = [
     'BaseAssigner', 'MaxIoUAssigner', 'ApproxMaxIoUAssigner', 'AssignResult',
     'PointAssigner', 'ATSSAssigner', 'CenterRegionAssigner', 'GridAssigner',
-<<<<<<< HEAD
     'HungarianAssigner', 'RegionAssigner', 'UniformAssigner', 'ATSSCostAssigner',
     'PointKptAssigner', 'SimOTAAssigner'
 ]
