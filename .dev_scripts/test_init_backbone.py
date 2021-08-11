@@ -36,10 +36,6 @@ def _get_config_module(fname):
 
 def _get_detector_cfg(fname):
     """Grab configs necessary to create a detector.
-<<<<<<< HEAD
-=======
-
->>>>>>> b4a84cc9cf38ee4c0fa6f6264e9916c8ba7cd3b3
     These are deep copied to allow for safe modification of parameters without
     influencing other tests.
     """
@@ -51,10 +47,6 @@ def _get_detector_cfg(fname):
 def _traversed_config_file():
     """We traversed all potential config files under the `config` file. If you
     need to print details or debug code, you can use this function.
-<<<<<<< HEAD
-=======
-
->>>>>>> b4a84cc9cf38ee4c0fa6f6264e9916c8ba7cd3b3
     If the `backbone.init_cfg` is None (do not use `Pretrained` init way), you
     need add the folder name in `ignores_folder` (if the config files in this
     folder all set backbone.init_cfg is None) or add config name in
@@ -95,10 +87,6 @@ def _traversed_config_file():
 def _check_backbone(config, print_cfg=True):
     """Check out backbone whether successfully load pretrained model, by using
     `backbone.init_cfg`.
-<<<<<<< HEAD
-=======
-
->>>>>>> b4a84cc9cf38ee4c0fa6f6264e9916c8ba7cd3b3
     First, using `mmcv._load_checkpoint` to load the checkpoint without
         loading models.
     Then, using `build_detector` to build models, and using
@@ -107,17 +95,9 @@ def _check_backbone(config, print_cfg=True):
         checkpoint are equal to the weights and bias of original checkpoint.
         For the convenience of comparison, we sum up weights and bias of
         each loaded layer separately.
-<<<<<<< HEAD
     Args:
         config (str): Config file path.
         print_cfg (bool): Whether print logger and return the result.
-=======
-
-    Args:
-        config (str): Config file path.
-        print_cfg (bool): Whether print logger and return the result.
-
->>>>>>> b4a84cc9cf38ee4c0fa6f6264e9916c8ba7cd3b3
     Returns:
         results (str or None): If backbone successfully load pretrained
             checkpoint, return None; else, return config file path.
@@ -166,10 +146,6 @@ def _check_backbone(config, print_cfg=True):
 def test_load_pretrained(config):
     """Check out backbone whether successfully load pretrained model by using
     `backbone.init_cfg`.
-<<<<<<< HEAD
-=======
-
->>>>>>> b4a84cc9cf38ee4c0fa6f6264e9916c8ba7cd3b3
     Details please refer to `_check_backbone`
     """
     _check_backbone(config, print_cfg=False)
@@ -178,10 +154,6 @@ def test_load_pretrained(config):
 def _test_load_pretrained():
     """We traversed all potential config files under the `config` file. If you
     need to print details or debug code, you can use this function.
-<<<<<<< HEAD
-=======
-
->>>>>>> b4a84cc9cf38ee4c0fa6f6264e9916c8ba7cd3b3
     Returns:
         check_cfg_names (list[str]): Config files that backbone initialized
         from pretrained checkpoint might be problematic. Need to recheck
@@ -198,8 +170,4 @@ def _test_load_pretrained():
             need_check_cfg.append(init_cfg_name)
         prog_bar.update()
     print('These config files need to be checked again')
-<<<<<<< HEAD
     print(need_check_cfg)
-=======
-    print(need_check_cfg)
->>>>>>> b4a84cc9cf38ee4c0fa6f6264e9916c8ba7cd3b3

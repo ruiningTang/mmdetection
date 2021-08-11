@@ -23,10 +23,6 @@ __all__ = [
     'build_transformer', 'build_linear_layer', 'SinePositionalEncoding',
     'LearnedPositionalEncoding', 'DynamicConv', 'SimplifiedBasicBlock',
     'NormedLinear', 'NormedConv2d', 'make_divisible', 'InvertedResidual',
-<<<<<<< HEAD
     'SELayer','sepc_conv','simam_module', 'QDynamicConv', 'SimpleBVR_Transformer',
-    'BRPool', 'TLPool'
-=======
-    'SELayer', 'interpolate_as', 'ConvUpsample', 'CSPLayer'
->>>>>>> b4a84cc9cf38ee4c0fa6f6264e9916c8ba7cd3b3
+    'BRPool', 'TLPool', 'interpolate_as', 'ConvUpsample', 'CSPLayer'
 ]

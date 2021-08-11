@@ -32,12 +32,10 @@ from .vfnet import VFNet
 from .yolact import YOLACT
 from .yolo import YOLOV3
 from .yolof import YOLOF
-<<<<<<< HEAD
 from .queryinst import QueryInst
 from .bvr import BVR
-=======
 from .yolox import YOLOX
->>>>>>> b4a84cc9cf38ee4c0fa6f6264e9916c8ba7cd3b3
+
 
 __all__ = [
     'ATSS', 'BaseDetector', 'SingleStageDetector', 'TwoStageDetector', 'RPN',
@@ -46,9 +44,5 @@ __all__ = [
     'GridRCNN', 'MaskScoringRCNN', 'RepPointsDetector', 'FOVEA', 'FSAF',
     'NASFCOS', 'PointRend', 'GFL', 'CornerNet', 'PAA', 'YOLOV3', 'YOLACT',
     'VFNet', 'DETR', 'TridentFasterRCNN', 'SparseRCNN', 'SCNet',
-<<<<<<< HEAD
-    'DeformableDETR', 'AutoAssign', 'YOLOF', 'CenterNet', 'QueryInst', 'BVR'
-=======
-    'DeformableDETR', 'AutoAssign', 'YOLOF', 'CenterNet', 'YOLOX'
->>>>>>> b4a84cc9cf38ee4c0fa6f6264e9916c8ba7cd3b3
+    'DeformableDETR', 'AutoAssign', 'YOLOF', 'CenterNet', 'QueryInst', 'BVR', 'YOLOX'
 ]

@@ -18,8 +18,5 @@ __all__ = [
     'PointAssigner', 'ATSSAssigner', 'CenterRegionAssigner', 'GridAssigner',
 <<<<<<< HEAD
     'HungarianAssigner', 'RegionAssigner', 'UniformAssigner', 'ATSSCostAssigner',
-    'PointKptAssigner'
-=======
-    'HungarianAssigner', 'RegionAssigner', 'UniformAssigner', 'SimOTAAssigner'
->>>>>>> b4a84cc9cf38ee4c0fa6f6264e9916c8ba7cd3b3
+    'PointKptAssigner', 'SimOTAAssigner'
 ]

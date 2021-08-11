@@ -32,7 +32,6 @@ from .vfnet_head import VFNetHead
 from .yolact_head import YOLACTHead, YOLACTProtonet, YOLACTSegmHead
 from .yolo_head import YOLOV3Head
 from .yolof_head import YOLOFHead
-<<<<<<< HEAD
 from .ddod_head import DDODHead
 from .ddod_fcos_head import DDODFCOSHead
 from .sepc_retina_head import SepcRetinaHead
@@ -41,9 +40,8 @@ from .rank_based_rpn_head import RankBasedRPNHead
 from .gfocal_head import GFocalHead
 from .bvr_head import BVRHead
 from .keypoint_head import KeypointHead
-=======
 from .yolox_head import YOLOXHead
->>>>>>> b4a84cc9cf38ee4c0fa6f6264e9916c8ba7cd3b3
+
 
 __all__ = [
     'AnchorFreeHead', 'AnchorHead', 'GuidedAnchorHead', 'FeatureAdaption',
@@ -55,10 +53,6 @@ __all__ = [
     'SABLRetinaHead', 'CentripetalHead', 'VFNetHead', 'StageCascadeRPNHead',
     'CascadeRPNHead', 'EmbeddingRPNHead', 'LDHead', 'CascadeRPNHead',
     'AutoAssignHead', 'DETRHead', 'YOLOFHead', 'DeformableDETRHead',
-<<<<<<< HEAD
     'CenterNetHead', 'DDODHead', 'DDODFCOSHead','SepcRetinaHead', 'ATSSIoUHead',
-    'RankBasedRPNHead', 'GFocalHead', 'BVRHead', 'KeypointHead'
-=======
-    'CenterNetHead', 'YOLOXHead'
->>>>>>> b4a84cc9cf38ee4c0fa6f6264e9916c8ba7cd3b3
+    'RankBasedRPNHead', 'GFocalHead', 'BVRHead', 'KeypointHead', 'YOLOXHead'
 ]

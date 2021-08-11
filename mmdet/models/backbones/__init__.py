@@ -24,12 +24,8 @@ from .swin_transformer import SwinTransformer
 __all__ = [
     'RegNet', 'ResNet', 'ResNetV1d', 'ResNeXt', 'SSDVGG', 'HRNet',
     'MobileNetV2', 'Res2Net', 'HourglassNet', 'DetectoRS_ResNet',
-<<<<<<< HEAD
-    'DetectoRS_ResNeXt', 'Darknet', 'ResNeSt', 'TridentResNet', 'ResNetAM',
+    'DetectoRS_ResNeXt', 'Darknet', 'ResNeSt', 'TridentResNet', 'ResNetAM', 'CSPDarknet',
     'pvt_v2_b0', 'pvt_v2_b1', 'pvt_v2_b2', 'pvt_v2_b2_li', 'pvt_v2_b3', 'pvt_v2_b4', 'pvt_v2_b5',
     'pvt_tiny', 'pvt_small', 'pvt_small_f4', 'pvt_medium',  'pvt_large',
     'CrossFormer_S', 'CrossFormer_B', 'CrossFormer_T', 'GANet', 'GANet_b3', 'SwinTransformer'
-=======
-    'DetectoRS_ResNeXt', 'Darknet', 'ResNeSt', 'TridentResNet', 'CSPDarknet'
->>>>>>> b4a84cc9cf38ee4c0fa6f6264e9916c8ba7cd3b3
 ]
