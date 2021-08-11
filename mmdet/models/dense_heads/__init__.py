@@ -40,6 +40,8 @@ from .rank_based_rpn_head import RankBasedRPNHead
 from .gfocal_head import GFocalHead
 from .bvr_head import BVRHead
 from .keypoint_head import KeypointHead
+from .yolox_head import YOLOXHead
+
 
 __all__ = [
     'AnchorFreeHead', 'AnchorHead', 'GuidedAnchorHead', 'FeatureAdaption',
@@ -52,5 +54,5 @@ __all__ = [
     'CascadeRPNHead', 'EmbeddingRPNHead', 'LDHead', 'CascadeRPNHead',
     'AutoAssignHead', 'DETRHead', 'YOLOFHead', 'DeformableDETRHead',
     'CenterNetHead', 'DDODHead', 'DDODFCOSHead','SepcRetinaHead', 'ATSSIoUHead',
-    'RankBasedRPNHead', 'GFocalHead', 'BVRHead', 'KeypointHead'
+    'RankBasedRPNHead', 'GFocalHead', 'BVRHead', 'KeypointHead', 'YOLOXHead'
 ]
