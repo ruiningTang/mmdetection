@@ -86,7 +86,7 @@ test_pipeline = [
 ]
 
 dataset_type = 'CocoDataset'
-data_root = 'data/coco/'
+data_root = '/home/amax/coco2017/'
 
 # Use RepeatDataset to speed up training
 data = dict(
@@ -120,3 +120,4 @@ lr_config = dict(
     warmup_ratio=1.0 / 1000,
     step=[18, 24])  # the real step is [18*5, 24*5]
 runner = dict(max_epochs=28)  # the real epoch is 28*5=140
+work_dir = 'work_dirs/coco/CenterNet/centernet_r18_dcn_140e_coco'
