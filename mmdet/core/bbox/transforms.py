@@ -244,3 +244,24 @@ def bbox_xyxy_to_cxcywh(bbox):
     x1, y1, x2, y2 = bbox.split((1, 1, 1, 1), dim=-1)
     bbox_new = [(x1 + x2) / 2, (y1 + y2) / 2, (x2 - x1), (y2 - y1)]
     return torch.cat(bbox_new, dim=-1)
+
+def bbox_limited(bboxes, max_shape=None):
+    """Decode distance prediction to bounding box.
+    Args:
+        points (Tensor): Shape (n, 2), [x, y].
+        distance (Tensor): Distance from the given point to 4
+            boundaries (left, top, right, bottom).
+        max_shape (tuple): Shape of the image.
+    Returns:
+        Tensor: Decoded bboxes.
+    """
+    x1 = bboxes[:, 0]
+    y1 = bboxes[:, 1]
+    x2 = bboxes[:, 2]
+    y2 = bboxes[:, 3]
+    if max_shape is not None:
+        x1 = x1.clamp(min=0, max=max_shape[1])
+        y1 = y1.clamp(min=0, max=max_shape[0])
+        x2 = x2.clamp(min=0, max=max_shape[1])
+        y2 = y2.clamp(min=0, max=max_shape[0])
+    return torch.stack([x1, y1, x2, y2], -1)

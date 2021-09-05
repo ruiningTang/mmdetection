@@ -35,6 +35,7 @@ from .yolof import YOLOF
 from .queryinst import QueryInst
 from .bvr import BVR
 from .yolox import YOLOX
+from .tood import TOOD
 
 
 __all__ = [
@@ -44,5 +45,5 @@ __all__ = [
     'GridRCNN', 'MaskScoringRCNN', 'RepPointsDetector', 'FOVEA', 'FSAF',
     'NASFCOS', 'PointRend', 'GFL', 'CornerNet', 'PAA', 'YOLOV3', 'YOLACT',
     'VFNet', 'DETR', 'TridentFasterRCNN', 'SparseRCNN', 'SCNet',
-    'DeformableDETR', 'AutoAssign', 'YOLOF', 'CenterNet', 'QueryInst', 'BVR', 'YOLOX'
+    'DeformableDETR', 'AutoAssign', 'YOLOF', 'CenterNet', 'QueryInst', 'BVR', 'YOLOX', 'TOOD'
 ]

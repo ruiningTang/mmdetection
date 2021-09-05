@@ -41,6 +41,7 @@ from .gfocal_head import GFocalHead
 from .bvr_head import BVRHead
 from .keypoint_head import KeypointHead
 from .yolox_head import YOLOXHead
+from .tood_head import TOODHead
 
 
 __all__ = [
@@ -54,5 +55,5 @@ __all__ = [
     'CascadeRPNHead', 'EmbeddingRPNHead', 'LDHead', 'CascadeRPNHead',
     'AutoAssignHead', 'DETRHead', 'YOLOFHead', 'DeformableDETRHead',
     'CenterNetHead', 'DDODHead', 'DDODFCOSHead','SepcRetinaHead', 'ATSSIoUHead',
-    'RankBasedRPNHead', 'GFocalHead', 'BVRHead', 'KeypointHead', 'YOLOXHead'
+    'RankBasedRPNHead', 'GFocalHead', 'BVRHead', 'KeypointHead', 'YOLOXHead', 'TOODHead'
 ]

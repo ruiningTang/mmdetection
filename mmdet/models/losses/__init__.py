@@ -18,6 +18,7 @@ from .utils import reduce_loss, weight_reduce_loss, weighted_loss
 from .varifocal_loss import VarifocalLoss
 from .dice_loss import DiceLoss
 from .ranking_losses import aLRPLoss, APLoss, RankSort
+from .task_aligned_focal_loss import FocalLossWithProb, TaskAlignedFocalLoss
 
 __all__ = [
     'accuracy', 'Accuracy', 'cross_entropy', 'binary_cross_entropy',
@@ -29,5 +30,5 @@ __all__ = [
     'l1_loss', 'isr_p', 'carl_loss', 'AssociativeEmbeddingLoss',
     'GaussianFocalLoss', 'QualityFocalLoss', 'DistributionFocalLoss',
     'VarifocalLoss', 'KnowledgeDistillationKLDivLoss', 'SeesawLoss', 'DiceLoss',
-    'aLRPLoss', 'APLoss', 'RankSort', 'eiou_loss', 'EIoULoss'
+    'aLRPLoss', 'APLoss', 'RankSort', 'eiou_loss', 'EIoULoss', 'FocalLossWithProb', 'TaskAlignedFocalLoss'
 ]

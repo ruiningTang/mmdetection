@@ -12,10 +12,13 @@ from .sim_ota_assigner import SimOTAAssigner
 from .uniform_assigner import UniformAssigner
 from .atss_cost_assigner import ATSSCostAssigner
 from .point_kpt_assigner import PointKptAssigner
+from .task_aligned_assigner import TaskAlignedAssigner
+from .task_aligned_assign_result import TaskAlignedAssignResult
+
 
 __all__ = [
     'BaseAssigner', 'MaxIoUAssigner', 'ApproxMaxIoUAssigner', 'AssignResult',
     'PointAssigner', 'ATSSAssigner', 'CenterRegionAssigner', 'GridAssigner',
     'HungarianAssigner', 'RegionAssigner', 'UniformAssigner', 'ATSSCostAssigner',
-    'PointKptAssigner', 'SimOTAAssigner'
+    'PointKptAssigner', 'SimOTAAssigner', 'TaskAlignedAssigner', 'TaskAlignedAssignResult'
 ]
