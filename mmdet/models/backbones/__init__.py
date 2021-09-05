@@ -1,3 +1,4 @@
+# Copyright (c) OpenMMLab. All rights reserved.
 from .csp_darknet import CSPDarknet
 from .darknet import Darknet
 from .detectors_resnet import DetectoRS_ResNet
@@ -11,6 +12,7 @@ from .resnest import ResNeSt
 from .resnet import ResNet, ResNetV1d
 from .resnext import ResNeXt
 from .ssd_vgg import SSDVGG
+from .swin import SwinTransformer
 from .trident_resnet import TridentResNet
 from .resnet_simam import ResNetAM
 from .pvt_v2 import pvt_v2_b0, pvt_v2_b1, pvt_v2_b2, pvt_v2_b2_li, pvt_v2_b3, pvt_v2_b4, pvt_v2_b5
