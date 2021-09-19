@@ -43,6 +43,7 @@ from .bvr_head import BVRHead
 from .keypoint_head import KeypointHead
 from .yolox_head import YOLOXHead
 from .tood_head import TOODHead
+from .level_resampling_head import LRPHead
 
 
 __all__ = [
@@ -56,5 +57,6 @@ __all__ = [
     'CascadeRPNHead', 'EmbeddingRPNHead', 'LDHead', 'CascadeRPNHead',
     'AutoAssignHead', 'DETRHead', 'YOLOFHead', 'DeformableDETRHead',
     'CenterNetHead', 'DDODHead', 'DDODFCOSHead','SepcRetinaHead', 'ATSSIoUHead',
-    'RankBasedRPNHead', 'GFocalHead', 'BVRHead', 'KeypointHead', 'YOLOXHead', 'TOODHead'
+    'RankBasedRPNHead', 'GFocalHead', 'BVRHead', 'KeypointHead', 'YOLOXHead', 'TOODHead',
+    'LRPHead'
 ]
