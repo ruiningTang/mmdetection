@@ -42,3 +42,4 @@ model = dict(
             subdivision_steps=5,
             subdivision_num_points=28 * 28,
             scale_factor=2)))
+work_dir = 'work_dirs/coco/point_rend/point_rend_r50_caffe_fpn_mstrain_1x_coco'

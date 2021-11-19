@@ -19,7 +19,7 @@ from .pvt import pvt_tiny, pvt_small, pvt_small_f4, pvt_medium, pvt_large
 from .crossformer import CrossFormer_S, CrossFormer_B, CrossFormer_T
 from .ganet import GANet
 from .ganet_b3 import GANet_b3
-from .swin_transformer import SwinTransformer
+from .swin import SwinTransformer
 
 
 __all__ = [

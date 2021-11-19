@@ -20,3 +20,4 @@ train_pipeline = [
     dict(type='Collect', keys=['img', 'gt_bboxes', 'gt_labels']),
 ]
 data = dict(train=dict(pipeline=train_pipeline))
+work_dir = 'work_dirs/coco/gfl/gfl_r50_fpn_mstrain_2x_coco'

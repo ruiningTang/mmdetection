@@ -157,6 +157,8 @@ class FPN(BaseModule):
             lateral_conv(inputs[i + self.start_level])
             for i, lateral_conv in enumerate(self.lateral_convs)
         ]
+        # from tools.feature_visualization import draw_feature_map
+        # draw_feature_map(laterals,name='lateral')
 
         # build top-down path
         used_backbone_levels = len(laterals)

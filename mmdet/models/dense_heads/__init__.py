@@ -44,6 +44,9 @@ from .keypoint_head import KeypointHead
 from .yolox_head import YOLOXHead
 from .tood_head import TOODHead
 from .level_resampling_head import LRPHead
+from .solo_head import DecoupledSOLOHead, DecoupledSOLOLightHead, SOLOHead
+from .paa_lad_head import PAA_LAD_Head
+
 
 
 __all__ = [
@@ -58,5 +61,5 @@ __all__ = [
     'AutoAssignHead', 'DETRHead', 'YOLOFHead', 'DeformableDETRHead',
     'CenterNetHead', 'DDODHead', 'DDODFCOSHead','SepcRetinaHead', 'ATSSIoUHead',
     'RankBasedRPNHead', 'GFocalHead', 'BVRHead', 'KeypointHead', 'YOLOXHead', 'TOODHead',
-    'LRPHead'
+    'LRPHead', 'DecoupledSOLOHead', 'DecoupledSOLOLightHead', 'SOLOHead', 'PAA_LAD_Head'
 ]

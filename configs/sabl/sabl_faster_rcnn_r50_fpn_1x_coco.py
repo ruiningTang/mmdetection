@@ -32,3 +32,5 @@ model = dict(
                 type='CrossEntropyLoss', use_sigmoid=True, loss_weight=1.0),
             loss_bbox_reg=dict(type='SmoothL1Loss', beta=0.1,
                                loss_weight=1.0))))
+
+work_dir = 'work_dirs/coco/sabl/faster_rcnn_sabl_r50_fpn_1x_coco'

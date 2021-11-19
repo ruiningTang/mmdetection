@@ -15,9 +15,10 @@ from .ssd_neck import SSDNeck
 from .yolo_neck import YOLOV3Neck
 from .sepc import SEPC 
 from .yolox_pafpn import YOLOXPAFPN
+from .rcfpn import RCFPN
 
 __all__ = [
     'FPN', 'BFP', 'ChannelMapper', 'HRFPN', 'NASFPN', 'FPN_CARAFE', 'PAFPN',
     'NASFCOS_FPN', 'RFP', 'YOLOV3Neck', 'FPG', 'DilatedEncoder',
-    'CTResNetNeck', 'SSDNeck','SEPC', 'YOLOXPAFPN'
+    'CTResNetNeck', 'SSDNeck','SEPC', 'YOLOXPAFPN', 'RCFPN'
 ]

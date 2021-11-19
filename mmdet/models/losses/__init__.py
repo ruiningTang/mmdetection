@@ -21,6 +21,9 @@ from .dice_loss import DiceLoss
 from .ranking_losses import aLRPLoss, APLoss, RankSort
 from .task_aligned_focal_loss import FocalLossWithProb, TaskAlignedFocalLoss
 from .pfocal_loss import ProgressiveFocalLoss
+from .solo_dice_loss import SOLODiceLoss
+from .focal_kl_loss import FocalKLLoss
+from .prob_focal_loss import ProbFocalLoss
 
 __all__ = [
     'accuracy', 'Accuracy', 'cross_entropy', 'binary_cross_entropy',
@@ -32,5 +35,6 @@ __all__ = [
     'l1_loss', 'isr_p', 'carl_loss', 'AssociativeEmbeddingLoss',
     'GaussianFocalLoss', 'QualityFocalLoss', 'DistributionFocalLoss',
     'VarifocalLoss', 'KnowledgeDistillationKLDivLoss', 'SeesawLoss', 'DiceLoss',
-    'aLRPLoss', 'APLoss', 'RankSort', 'eiou_loss', 'EIoULoss', 'FocalLossWithProb', 'TaskAlignedFocalLoss', 'ProgressiveFocalLoss'
+    'aLRPLoss', 'APLoss', 'RankSort', 'eiou_loss', 'EIoULoss', 'FocalLossWithProb', 'TaskAlignedFocalLoss', 'ProgressiveFocalLoss', 'SOLODiceLoss',
+    'FocalKLLoss', 'ProbFocalLoss'
 ]

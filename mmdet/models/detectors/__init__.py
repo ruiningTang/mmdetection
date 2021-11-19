@@ -40,6 +40,9 @@ from .bvr import BVR
 from .yolox import YOLOX
 from .tood import TOOD
 from .umop import UMOP
+from .solo import SOLO
+from .crossdet import CrossDet
+from .lad import LAD
 
 
 __all__ = [
@@ -50,6 +53,6 @@ __all__ = [
     'NASFCOS', 'PointRend', 'GFL', 'CornerNet', 'PAA', 'YOLOV3', 'YOLACT',
     'VFNet', 'DETR', 'TridentFasterRCNN', 'SparseRCNN', 'SCNet',
     'DeformableDETR', 'AutoAssign', 'YOLOF', 'CenterNet', 'QueryInst', 'BVR', 'YOLOX', 'TOOD',
-    'TwoStagePanopticSegmentor', 'PanopticFPN', 'UMOP'
+    'TwoStagePanopticSegmentor', 'PanopticFPN', 'UMOP', 'SOLO', 'CrossDet', 'LAD'
 
 ]

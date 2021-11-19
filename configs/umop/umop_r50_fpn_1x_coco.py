@@ -1,5 +1,5 @@
 _base_ = [
-    '../_base_/datasets/coco_detection_4x4.py',
+    '../_base_/datasets/coco_detection.py',
     '../_base_/schedules/schedule_1x.py', '../_base_/default_runtime.py'
 ]
 model = dict(
@@ -61,5 +61,5 @@ model = dict(
         max_per_img=100))
 
 # optimizer
-optimizer = dict(type='SGD', lr=0.01, momentum=0.9, weight_decay=0.0001)
-work_dir = 'work_dirs/coco/umop/umop_r50_fpn_1x_coco'
+optimizer = dict(type='SGD', lr=0.005, momentum=0.9, weight_decay=0.0001)
+work_dir = 'work_dirs/coco/umop/umop_r50_fpn_1x_4x2_coco'
